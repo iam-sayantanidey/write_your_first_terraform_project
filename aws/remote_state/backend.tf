@@ -1,15 +1,9 @@
 terraform {
   backend "s3" {
-    encrypt = true
-  }
+   bucket  = "851725394078-terraform-states"
+   key     = "local_state/terraform.tfstate"
+   encrypt = true
+   region  = "us-east-1"
+   dynamodb_table = "terraform-lock"
+ }
 }
-
-# example of 'partial configuration':
-# https://www.terraform.io/docs/backends/config.html#partial-configuration
-#
-# cat config/backend-dev.conf
-bucket  = "<account_id>-terraform-states"
-key     = "development/service-name.tfstate"
-encrypt = true
-region  = "ap-southeast-2"
-dynamodb_table = "terraform-lock"
